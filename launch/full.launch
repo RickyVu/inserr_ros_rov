@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find my_package)/launch/rov.launch" />
+
+    <include file="$(find my_package)/launch/sensor.launch" />
+</launch>

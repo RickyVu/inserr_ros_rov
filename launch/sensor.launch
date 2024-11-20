@@ -1,0 +1,8 @@
+<launch>
+    <node name="imu_reader" pkg="inserr_ros_rov" type="IMUReader.py">
+        <param name="rate" type="int" value="100" />
+    </node>
+    
+    <node name="lidar_reader" pkg="inserr_ros_rov" type="LidarReader.py">
+    </node>
+</launch>
