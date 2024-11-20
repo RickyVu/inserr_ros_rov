@@ -55,7 +55,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('can_handler', anonymous=True)
         rate_param = rospy.get_param('~rate', 10.0)
-        baudrate_param = rospy.get_param('~baudrate', 2500000)
+        baudrate_param = rospy.get_param('~baudrate', 250000)
         rate = rospy.Rate(rate_param)
         
         can_handler = CANHandler(baudrate_param)

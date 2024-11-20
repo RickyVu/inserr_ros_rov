@@ -4,7 +4,7 @@ import rospy
 from sensor_msgs.msg import Image
 import cv2 as cv
 from cv_bridge import CvBridge
-import pubsub
+import pubsub.json_message
 
 class USBCamera:
     def __init__(self, cam_num, cam_format, v_width, v_height, v_fps):
@@ -48,6 +48,7 @@ if __name__ == "__main__":
         while not rospy.is_shutdown():
             usb_camera.run()
             rate.sleep()
-        usb_camera.cleaup()
     except rospy.ROSInterruptException:
         pass
+    finally:
+        usb_camera.cleaup()

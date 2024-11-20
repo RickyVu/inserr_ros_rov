@@ -1,8 +1,12 @@
 <launch>
     <node name="imu_reader" pkg="inserr_ros_rov" type="IMUReader.py">
         <param name="rate" type="int" value="100" />
+        <param name="folder" type="string" value="$(find inserr_ros_rov)/IMUData" />
+        <param name="storage_prefix" type="string" value="IMU_Data" />
     </node>
-    
+
     <node name="lidar_reader" pkg="inserr_ros_rov" type="LidarReader.py">
+        <param name="folder" type="string" value="$(find inserr_ros_rov)/LidarData" />
+        <param name="storage_prefix" type="string" value="Lidar_Data" />
     </node>
 </launch>

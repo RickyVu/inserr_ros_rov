@@ -1,2 +1,4 @@
 opencv-python
 python-can
+adafruit-circuitpython-bno055
+rplidar

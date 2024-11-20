@@ -10,11 +10,12 @@ import rospy
 PORT_NAME = '/dev/ttyUSB1'
 
 class LidarReaderPi:
-    def __init__(self):
+    def __init__(self, folder, storage_prefix):
         self.localtime = time.strftime('%Y-%m-%d, %H-%M-%S')
         
         self.lidar = RPLidar(PORT_NAME)
-        self.outfile = open("./LidarData/Lidar_Data " + self.localtime + '.txt', 'w')
+        #self.outfile = open("./LidarData/Lidar_Data " + self.localtime + '.txt', 'w')
+        self.outfile = open(f"{folder}/{storage_prefix} {self.localtime}.txt", "w")
     
     def run(self):
     
@@ -38,8 +39,10 @@ class LidarReaderPi:
 if __name__ == '__main__':
     try:
         rospy.init_node('lidar_reader', anonymous=True)
+        folder_param = rospy.get_param("~folder", "")
+        storage_prefix_param = rospy.get_param("~storage_prefix", "Lidar_Data")
         
-        lidar_reader = LidarReaderPi()
+        lidar_reader = LidarReaderPi(folder_param, storage_prefix_param)
         lidar_reader.run() #From INSERR repo, I assume iter_measures measures repeatedly and does not end
     except rospy.ROSInterruptException:
         lidar_reader.cleanup()
