@@ -4,11 +4,11 @@ import rospy
 from sensor_msgs.msg import Image
 import cv2 as cv
 from cv_bridge import CvBridge
-import pubsub.json_message
+from sensor_msgs.msg import Image
 
 class USBCamera:
     def __init__(self, cam_num, cam_format, v_width, v_height, v_fps):
-        self.pub_cam = pubsub.json_message.Publisher('inserr/cam/footage1', queue_size=10)
+        self.pub_cam = rospy.Publisher('/inserr/cam/stream', Image, queue_size=10)
 
         self.cam = cv.VideoCapture(cam_num, cv.CAP_V4L2)
 
