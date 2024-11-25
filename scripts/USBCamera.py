@@ -28,8 +28,12 @@ class USBCamera:
             rospy.logerr("Failed to capture frame")
             return
 
-        # Convert the frame to a ROS Image message
-        msg = self.bridge.cv2_to_imgmsg(image, "bgr8")
+        # Check if the image is grayscale
+        if len(image.shape) == 2:  # Grayscale image has 2 dimensions
+            image_bgr = cv.cvtColor(image, cv.COLOR_GRAY2BGR)
+            msg = self.bridge.cv2_to_imgmsg(image_bgr, "bgr8")
+        else:
+            msg = self.bridge.cv2_to_imgmsg(image, "bgr8")
         self.pub_cam.publish(msg)
 
 

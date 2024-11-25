@@ -4,6 +4,6 @@
         <param name="baudrate" type="int" value="250000" />
     </node>
     <node name="usb_camera" pkg="inserr_ros_rov" type="USBCamera.py">
-        <param name="rate" type="int" value="30" />
+        <param name="rate" type="int" value="30.0" />
     </node>
 </launch>
